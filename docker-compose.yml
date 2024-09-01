@@ -24,6 +24,9 @@ services:
         condition: service_healthy
     environment:
       - SPRING_RABBITMQ_HOST=rabbitmq
+      - FILE_STORAGE_PATH=/data/data.csv
+    volumes:
+      - ${PRODUCER_PATH}:/data
     networks:
       - app-network
 
@@ -36,6 +39,9 @@ services:
         condition: service_healthy
     environment:
       - SPRING_RABBITMQ_HOST=rabbitmq
+      - FILE_STORAGE_PATH=/data/data.csv
+    volumes:
+      - ${CONSUMER_PATH}:/data
     networks:
       - app-network
 
